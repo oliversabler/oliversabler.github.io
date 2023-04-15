@@ -1,7 +1,6 @@
 ---
 permalink: /
 ---
+Hi, I'm a programmer.
 
-Singularity!
-
-- [Test post](test.md)
+## Posts
