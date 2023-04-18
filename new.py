@@ -6,7 +6,6 @@ Date -> Today
 '''
 
 import sys
-from datetime import date
 
 if len(sys.argv) < 1:
     exit(1)

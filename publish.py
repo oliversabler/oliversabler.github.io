@@ -3,7 +3,6 @@ Publish drafts folder by moving files to /posts
 
 Open index.html and search for {{POSTS}} and insert link to new post below
 '''
-import os
 import shutil
 import sys
 from datetime import date
