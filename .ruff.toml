@@ -1,0 +1,7 @@
+target-version = "py310"
+
+select = [
+  "E",
+  "F",
+  "UP"
+]

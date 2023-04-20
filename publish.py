@@ -27,7 +27,7 @@ today = date.today()
 '''
 Brand post with date created
 '''
-with open(post_path_source, 'r') as f:
+with open(post_path_source) as f:
     html = f.readlines()
 
     idx = 0
@@ -54,7 +54,7 @@ shutil.move(post_path_source, post_path_target)
 '''
 Add anchor link to post on startpage
 '''
-with open('index.html', 'r') as f:
+with open('index.html') as f:
     html = f.readlines()
 
     idx = 0
