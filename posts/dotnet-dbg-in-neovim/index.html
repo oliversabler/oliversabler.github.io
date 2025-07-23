@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Configure Neovim debug adapter for dotnet on macOS</title>
+	
+	
+	<link rel="stylesheet" href="/css/style.css">
+	
+	
+</head>
+<body>
+	<header>
+<pre class="log-header">
+:::' ####:::::' ######::' ######:::::
+::::' ##:::::: ##::: ##: ##::: ##::::
+::::: ##:::::: ##::: ##: ##::::::::::
+::::: ##:::::: ##::: ##: ##:: ###::::
+::::. ##:: ##: ##::: ##: ##::. ##::::
+:::: ########:. ######::. ######:::::
+::::........:::......::::......::::::
+</pre>
+	
+	<nav>
+        <span>|</span>
+        <a href="/">[log]</a>
+        
+        
+        <span>|</span>
+        <a href="/about/">[about]</a>
+        
+        <span>|</span>
+        <a href="/resume/">[resume]</a>
+        
+        <span>|</span>
+	</nav>
+	
+</header>
+
+	
+	<main>
+		<article>
+			<h1>Configure Neovim debug adapter for dotnet on macOS</h1>
+            
+            <i>
+                <time>
+                2025-04-24
+                </time>
+            </i>
+            
+
+            <p>
+            
+            </p>
+			<div>
+				<p>Ever since moving to Neovim I&rsquo;ve been printf() debugging. This approach is usually good enough for my side projects at home, but I&rsquo;m not going to lie, there are times when I miss step debugging.</p>
+<p>I don&rsquo;t code in C# much anymore. But I like the idea of having a setup for developing C# application on macOS when I want to, without having to install VS Code. And having step debugging availiable is a part of that setup. So let&rsquo;s dive into how I configured the debug adapter in Neovim.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>You need Neovim, obviously. I will not go into the details of setting up <a href="https://github.com/mfussenegger/nvim-dap">nvim-dap</a>. If you are following along, I assume you have nvim-dap in place already.</p>
+<ul>
+<li><a href="https://dotnet.microsoft.com/en-us/download">.NET 9.0</a></li>
+<li><a href="https://cmake.org/download/">CMake</a></li>
+</ul>
+<p>First, let&rsquo;s make sure dotnet and cmake are installed.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dotnet --version
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 9.0.203</span>
+</span></span><span style="display:flex;"><span>cmake --version
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># cmake version 4.0.1</span>
+</span></span></code></pre></div><p>Note! When installing CMake manually you have to make sure the PATH is updated aswell.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">PATH</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;/Applications/CMake.app/Contents/bin:</span><span style="color:#8be9fd;font-style:italic">$PATH</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">export</span> PATH
+</span></span></code></pre></div><h2 id="building-the-binaries">Building the binaries</h2>
+<p>Now clone <a href="https://github.com/Samsung/netcoredbg">netcoredb</a> repository and create a build directory.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">cd</span> netcoredbg
+</span></span><span style="display:flex;"><span>mkdir build
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">cd</span> build
+</span></span></code></pre></div><p>And configure the build.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">CC</span><span style="color:#ff79c6">=</span>clang <span style="color:#8be9fd;font-style:italic">CXX</span><span style="color:#ff79c6">=</span>clang++ cmake ..
+</span></span></code></pre></div><p>If you got a newer version of CMake, like I do, you might run into this error.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>CMake Error at CMakeLists.txt:1 (cmake_minimum_required):
+</span></span><span style="display:flex;"><span>  Compatibility with CMake &lt; 3.5 has been removed from CMake.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Update the VERSION argument &lt;min&gt; value.  Or, use the &lt;min&gt;...&lt;max&gt; syntax
+</span></span><span style="display:flex;"><span>  to tell CMake that the project requires at least &lt;min&gt; but has been updated
+</span></span><span style="display:flex;"><span>  to work with policies introduced by &lt;max&gt; or earlier.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Or, add -DCMAKE_POLICY_VERSION_MINIMUM=3.5 to try configuring anyway.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>-- Configuring incomplete, errors occurred!
+</span></span></code></pre></div><p>Solving this error is easy enough. Just a small update in CMakeList.txt, a file found in the root of /netcoredbg. Open it up and replace the version at the top.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span><span style="color:#6272a4"># Replace
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">cmake_minimum_required</span>(<span style="color:#f1fa8c">VERSION</span> <span style="color:#f1fa8c">2.8.12.2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># With
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">cmake_minimum_required</span>(<span style="color:#f1fa8c">VERSION</span> <span style="color:#f1fa8c">3.5</span>)
+</span></span></code></pre></div><p>I also had to update another CMakeLists.txt file located in the directory /netcoredbg/third_party/linenoise-ng</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span><span style="color:#6272a4"># Replace
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">cmake_minimum_required</span>(<span style="color:#f1fa8c">VERSION</span> <span style="color:#f1fa8c">2.6</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># With
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">cmake_minimum_required</span>(<span style="color:#f1fa8c">VERSION</span> <span style="color:#f1fa8c">3.5</span>)
+</span></span></code></pre></div><p>Let&rsquo;s go back to the /build directory and configure the build once again.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">CC</span><span style="color:#ff79c6">=</span>clang <span style="color:#8be9fd;font-style:italic">CXX</span><span style="color:#ff79c6">=</span>clang++ cmake ..
+</span></span></code></pre></div><p>This time success!</p>
+<p>With everything configured, run make and make install. If everything is successful the output is placed in the directory /usr/local/netcoredbg.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>make
+</span></span><span style="display:flex;"><span>make install
+</span></span></code></pre></div><h2 id="configure-neovim">Configure Neovim</h2>
+<p>The DAP configuration in Neovim is pretty straight forward, more information can be found <a href="https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#dotnet">here</a>. My configuration looks like this.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span>dap.adapters.coreclr <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>    type <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;executable&#34;</span>,
+</span></span><span style="display:flex;"><span>    command <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;/usr/local/netcoredbg&#34;</span>,
+</span></span><span style="display:flex;"><span>    args <span style="color:#ff79c6">=</span> { <span style="color:#f1fa8c">&#34;--interpreter=vscode&#34;</span> }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dap.configurations.cs <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        type <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;coreclr&#34;</span>,
+</span></span><span style="display:flex;"><span>        name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Launch&#34;</span>,
+</span></span><span style="display:flex;"><span>        request <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;launch&#34;</span>,
+</span></span><span style="display:flex;"><span>        program <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">function</span>()
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> vim.fn.input(<span style="color:#f1fa8c">&#34;Path to dll: &#34;</span>, vim.fn.getcwd() <span style="color:#ff79c6">..</span> <span style="color:#f1fa8c">&#34;/bin/Debug/&#34;</span>, <span style="color:#f1fa8c">&#34;file&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">end</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Now I can open up a C# project and fire up the debugger like old times! 🎉</p>
+
+			</div>
+		</article>
+	</main>
+
+	<footer>
+	</p>
+</footer>
+
+</body>
+</html>

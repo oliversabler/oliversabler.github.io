@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on My cyberpage</title>
+    <link>https://oliversabler.com/posts/</link>
+    <description>Recent content in Posts on My cyberpage</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 24 Apr 2025 16:00:00 +0200</lastBuildDate>
+    <atom:link href="https://oliversabler.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configure Neovim debug adapter for dotnet on macOS</title>
+      <link>https://oliversabler.com/posts/dotnet-dbg-in-neovim/</link>
+      <pubDate>Thu, 24 Apr 2025 16:00:00 +0200</pubDate>
+      <guid>https://oliversabler.com/posts/dotnet-dbg-in-neovim/</guid>
+      <description>&lt;p&gt;Ever since moving to Neovim I&amp;rsquo;ve been printf() debugging. This approach is usually good enough for my side projects at home, but I&amp;rsquo;m not going to lie, there are times when I miss step debugging.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Milk Programming Language</title>
+      <link>https://oliversabler.com/posts/milk-programming-language/</link>
+      <pubDate>Thu, 27 Mar 2025 16:00:00 +0100</pubDate>
+      <guid>https://oliversabler.com/posts/milk-programming-language/</guid>
+      <description>&lt;p&gt;Over the past year I have been delving deeper into programming languages. In my journey so far I have created a few languages based on &lt;a href=&#34;https://craftinginterpreters.com/the-lox-language.html&#34;&gt;Lox&lt;/a&gt; and &lt;a href=&#34;https://monkeylang.org&#34;&gt;Monkey&lt;/a&gt;. And I am now at a point where I want to create my first &amp;ldquo;serious&amp;rdquo; toy language. A language for me to learn more concepts and try out different approaches.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Long distance travel with EV</title>
+      <link>https://oliversabler.com/posts/long-distance-travel-with-ev/</link>
+      <pubDate>Thu, 13 Feb 2025 19:00:00 +0100</pubDate>
+      <guid>https://oliversabler.com/posts/long-distance-travel-with-ev/</guid>
+      <description>&lt;p&gt;Recently, I went on a longer trip in an EV, and wow it was painful. And traveling in temperatures between -15 and 0 degrees Celsius made it a tad more interesting than I wanted it to be.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Exploring something new</title>
+      <link>https://oliversabler.com/posts/exploring-something-new/</link>
+      <pubDate>Mon, 03 Feb 2025 20:28:00 +0100</pubDate>
+      <guid>https://oliversabler.com/posts/exploring-something-new/</guid>
+      <description>&lt;p&gt;The last two years, I have taken a break from programming in C#. After eight years of programming in C# professionally, I felt it was time to explore something new and unknown to me. It is scary to do something outside of your comfort zone, but they tell me that is how you grow.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Using TKey with Github</title>
+      <link>https://oliversabler.com/posts/tkey-github/</link>
+      <pubDate>Tue, 28 May 2024 20:20:20 +0100</pubDate>
+      <guid>https://oliversabler.com/posts/tkey-github/</guid>
+      <description>&lt;p&gt;This is a simplified guide for setting up your TKey to be able to do GitHub SSH operations and signing your commits with SSH. I use MacOS, if you use any other OS the steps and commands may differ.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

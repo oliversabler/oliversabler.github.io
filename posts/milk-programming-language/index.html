@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Milk Programming Language</title>
+	
+	
+	<link rel="stylesheet" href="/css/style.css">
+	
+	
+</head>
+<body>
+	<header>
+<pre class="log-header">
+:::' ####:::::' ######::' ######:::::
+::::' ##:::::: ##::: ##: ##::: ##::::
+::::: ##:::::: ##::: ##: ##::::::::::
+::::: ##:::::: ##::: ##: ##:: ###::::
+::::. ##:: ##: ##::: ##: ##::. ##::::
+:::: ########:. ######::. ######:::::
+::::........:::......::::......::::::
+</pre>
+	
+	<nav>
+        <span>|</span>
+        <a href="/">[log]</a>
+        
+        
+        <span>|</span>
+        <a href="/about/">[about]</a>
+        
+        <span>|</span>
+        <a href="/resume/">[resume]</a>
+        
+        <span>|</span>
+	</nav>
+	
+</header>
+
+	
+	<main>
+		<article>
+			<h1>Milk Programming Language</h1>
+            
+            <i>
+                <time>
+                2025-03-27
+                </time>
+            </i>
+            
+
+            <p>
+            
+            </p>
+			<div>
+				<p>Over the past year I have been delving deeper into programming languages. In my journey so far I have created a few languages based on <a href="https://craftinginterpreters.com/the-lox-language.html">Lox</a> and <a href="https://monkeylang.org">Monkey</a>. And I am now at a point where I want to create my first &ldquo;serious&rdquo; toy language. A language for me to learn more concepts and try out different approaches.</p>
+<p>The language I am talking about has the working name &ldquo;Milk.&rdquo; Milk is a language that I am currently writing in the programming language C. A language I have limited knowledge in, but a language I have always wanted to learn.</p>
+<p>The high level architecture looks something like this.</p>
+<p>
+<figure>
+  <img src="/images/milk-arc-over.png" alt="Milk overview" />
+</figure>
+
+
+</p>
+<p>The Lexer is responsible for taking a stream of characters as input and outputs a flat sequence of tokens. And what is a token? Think of tokens as words in our language. Some tokens are a single character like <code>=</code> or <code>!</code>, others are several characters long, like keywords (<code>if</code>, <code>return</code>, &hellip;), numbers (<code>619</code>), identifiers (<code>my_identifier</code>), and string literals (<code>&quot;Hello, World!&quot;</code>).</p>
+<p>Next up is parsing. Now it is time to convert our flat sequence of tokens into a parse tree, or Abstract Syntax Tree (AST). This is where we compose larger expressions and statements based on the tokens. You could say we give our language its grammar.</p>
+<p>There are many ways to write a parser. I am going to go with the approach that is most familiar to me: Recursive Descent Parsing. I have learned that if you are going to write your own parser this approach is one of the simpler ways to go about it. And even though it is &ldquo;simple&rdquo;, this way of parsing is still fast and robust. I also want to avoid using a generator (like YACC or ANTLR).</p>
+<p>I have only created dynamically typed languages before, therefore I want to try and make Milk statically typed. So after the AST has been created I want to perform static analysis or type checking. Type checking can be performed on dynamically typed languages too, but these are usually performed later at runtime. I want to know what types the variables are at compile time. I will achieve this by specifying variables with what kind of type it is. For example it may look something like this <code>var my_variable: string = &quot;my value!&quot;;</code>, here we specify that <code>my_variable</code> is of the type <code>string</code>. Type inference is an approach that allows you to know the type of a variable without specifying it. This is not something I will explore for this project.</p>
+<p>Now for this project&rsquo;s behemoth, the big unknown. I want to use LLVM to output the program as an executable for whatever target architecture one might be on. There are still many question marks regarding how this will be implemented, but I will try for sure.</p>
+<p>Anyway, this is the plan. It is not set in stone and will most definitely change during the course of the implementation.</p>
+<p>
+<figure>
+  <img src="/images/milk-logo-1-mini.png" alt="Milk" />
+</figure>
+
+
+</p>
+
+			</div>
+		</article>
+	</main>
+
+	<footer>
+	</p>
+</footer>
+
+</body>
+</html>

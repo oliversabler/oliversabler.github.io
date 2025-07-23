@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Csharp on My cyberpage</title>
+    <link>https://oliversabler.com/tags/csharp/</link>
+    <description>Recent content in Csharp on My cyberpage</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 24 Apr 2025 16:00:00 +0200</lastBuildDate>
+    <atom:link href="https://oliversabler.com/tags/csharp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configure Neovim debug adapter for dotnet on macOS</title>
+      <link>https://oliversabler.com/posts/dotnet-dbg-in-neovim/</link>
+      <pubDate>Thu, 24 Apr 2025 16:00:00 +0200</pubDate>
+      <guid>https://oliversabler.com/posts/dotnet-dbg-in-neovim/</guid>
+      <description>&lt;p&gt;Ever since moving to Neovim I&amp;rsquo;ve been printf() debugging. This approach is usually good enough for my side projects at home, but I&amp;rsquo;m not going to lie, there are times when I miss step debugging.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

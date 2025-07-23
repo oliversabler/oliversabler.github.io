@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Using TKey with Github</title>
+	
+	
+	<link rel="stylesheet" href="/css/style.css">
+	
+	
+</head>
+<body>
+	<header>
+<pre class="log-header">
+:::' ####:::::' ######::' ######:::::
+::::' ##:::::: ##::: ##: ##::: ##::::
+::::: ##:::::: ##::: ##: ##::::::::::
+::::: ##:::::: ##::: ##: ##:: ###::::
+::::. ##:: ##: ##::: ##: ##::. ##::::
+:::: ########:. ######::. ######:::::
+::::........:::......::::......::::::
+</pre>
+	
+	<nav>
+        <span>|</span>
+        <a href="/">[log]</a>
+        
+        
+        <span>|</span>
+        <a href="/about/">[about]</a>
+        
+        <span>|</span>
+        <a href="/resume/">[resume]</a>
+        
+        <span>|</span>
+	</nav>
+	
+</header>
+
+	
+	<main>
+		<article>
+			<h1>Using TKey with Github</h1>
+            
+            <i>
+                <time>
+                2024-05-28
+                </time>
+            </i>
+            
+
+            <p>
+            
+            </p>
+			<div>
+				<p>This is a simplified guide for setting up your TKey to be able to do GitHub SSH operations and signing your commits with SSH. I use MacOS, if you use any other OS the steps and commands may differ.</p>
+<p>Feel free to deep dive in the GitHub documentation if you want a more in-depth setup guide. And if you want to know more about TKey, you can find information here.</p>
+<h2 id="github-ssh">GitHub SSH</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>Before we can do SSH operations towards GitHub we must install the TKey ssh-agent. The TKey ssh-agent is an application which lets you do SSH Public Key Authentication.</p>
+<p>Follow the official guide from Tillitis to install and generate a public SSH key.</p>
+<p>Add the SSH key to the tkey-ssh-agent and follow the prompted steps by running ssh-add in your terminal. Make sure the path of the environment variable SSH_AUTH_SOCK is something like /opt/homebrew/var/run/tkey-ssh-agent.sock when running echo $SSH_AUTH_SOCK.</p>
+<h3 id="add-ssh-key-to-github">Add SSH key to GitHub</h3>
+<p>Go to SSH and GPG keys and add a new SSH key. The Key field should contain the public key you generated before. Fetch it again by running</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh-add -L
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># output: ssh-ed25519 [the public key] TKey</span>
+</span></span></code></pre></div><p>You can test by cloning a repository. If everything is setup correctly the TKey should flashgreen, touch the sensor on your key to confirm, and the operation will proceed.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone git@github.com:&lt;username&gt;/&lt;repository&gt;.git
+</span></span></code></pre></div><h2 id="signing-commits">Signing commits</h2>
+<p>In git you have the ability to sign your commits and tags. When you sign a commit, you are ensuring that the commit originated from you and not someone else. We can sign our commits with the SSH key we already generated. Lets configure our git to use ssh as gpg format, and point the signing key to our already generated public key.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git config --global gpg.format ssh
+</span></span><span style="display:flex;"><span>git config --global user.signingkey ~/path/to/.ssh/key.pub
+</span></span></code></pre></div><p>Now we must tell GitHub about our signing key. Go to SSH and GPG keys again and add a new SSH key. Select &ldquo;Signing key&rdquo; in the dropdown and use the contents of the public key generated before, run <code>cat ~/path/to/.ssh/key.pub</code> to get what you need.</p>
+<p>We should new be able to sign our commits and get a beautiful little &ldquo;Verify&rdquo; label on our commits in GitHub.</p>
+<p>Sign commits with <code>git commit -S -m &quot;Commit message&quot;</code>, or configure git to sign all commits by default</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git config --global commit.gpgsign <span style="color:#8be9fd;font-style:italic">true</span>
+</span></span></code></pre></div>
+			</div>
+		</article>
+	</main>
+
+	<footer>
+	</p>
+</footer>
+
+</body>
+</html>

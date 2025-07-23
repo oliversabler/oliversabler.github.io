@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Milk on My cyberpage</title>
+    <link>https://oliversabler.com/tags/milk/</link>
+    <description>Recent content in Milk on My cyberpage</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 27 Mar 2025 16:00:00 +0100</lastBuildDate>
+    <atom:link href="https://oliversabler.com/tags/milk/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Milk Programming Language</title>
+      <link>https://oliversabler.com/posts/milk-programming-language/</link>
+      <pubDate>Thu, 27 Mar 2025 16:00:00 +0100</pubDate>
+      <guid>https://oliversabler.com/posts/milk-programming-language/</guid>
+      <description>&lt;p&gt;Over the past year I have been delving deeper into programming languages. In my journey so far I have created a few languages based on &lt;a href=&#34;https://craftinginterpreters.com/the-lox-language.html&#34;&gt;Lox&lt;/a&gt; and &lt;a href=&#34;https://monkeylang.org&#34;&gt;Monkey&lt;/a&gt;. And I am now at a point where I want to create my first &amp;ldquo;serious&amp;rdquo; toy language. A language for me to learn more concepts and try out different approaches.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

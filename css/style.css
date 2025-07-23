@@ -1,0 +1,158 @@
+html {
+    overflow-y: scroll
+}
+
+:root {
+    --bgcolor: white;
+    --fontcolor: #444444;
+    --linkcolor: #ffd800;
+    --visitedcolor: #ffd800;
+    --hovercolor: #e8c451;
+    --precolor: #444444;
+    --prebgcolor: #f5f5f5;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bgcolor: #111a2a;
+        --fontcolor: #f8f9fa;
+        --linkcolor: #f4dd5b;
+        --visitedcolor: #f4dd5b;
+        --hovercolor: #efe3a1;
+        --precolor: #ffffff;
+        --prebgcolor: #0b0b12;
+    }
+}
+
+body {
+    max-width:800px;
+    margin:10px auto;
+    padding:0 10px;
+    font-family: "Helvetica";
+    color:var(--fontcolor);
+    background: var(--bgcolor);
+    position: relative;
+    overflow: hidden;
+}
+
+nav > a {
+    font-size: 1.10em;
+}
+
+a:link {
+    color: var(--linkcolor)
+}
+
+a:visited {
+    color: var(--visitedcolor)
+}
+
+a:hover {
+    color: var(--hovercolor);
+}
+
+a:active {
+    color: var(--visitedcolor)
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+p {
+    font-size: 1.10em;
+}
+
+li {
+    font-size: 1.025em;
+}
+
+p, li {
+    line-height: 1.4;
+    word-spacing: 1px;
+}
+
+p > code{
+    color: var(--precolor);
+    background: var(--prebgcolor);
+    padding: 2px 6px;
+    border: 1px solid #59555f;
+    border-radius: 3px;
+}
+
+code {
+    color: var(--precolor);
+    background: var(--prebgcolor);
+}
+
+pre {
+    color: var(--precolor);
+    background: var(--prebgcolor);
+    padding:24px;
+    overflow-x: auto;
+    border: 1px solid #59555f;
+    border-radius: 3px;
+}
+
+.log-header {
+    background: var(--bgcolor);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0;
+    border: 0;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+nav a {
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+article {
+    padding:24px 0
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+figcaption {
+    color: #888;
+    text-align: center;
+}
+
+figure {
+    margin: auto
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: auto
+}
+
+li p {
+    margin: 0;
+}
+
+ul {
+    margin-bottom: 10px;
+}

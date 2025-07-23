@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Exploring on My cyberpage</title>
+    <link>https://oliversabler.com/tags/exploring/</link>
+    <description>Recent content in Exploring on My cyberpage</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 03 Feb 2025 20:28:00 +0100</lastBuildDate>
+    <atom:link href="https://oliversabler.com/tags/exploring/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Exploring something new</title>
+      <link>https://oliversabler.com/posts/exploring-something-new/</link>
+      <pubDate>Mon, 03 Feb 2025 20:28:00 +0100</pubDate>
+      <guid>https://oliversabler.com/posts/exploring-something-new/</guid>
+      <description>&lt;p&gt;The last two years, I have taken a break from programming in C#. After eight years of programming in C# professionally, I felt it was time to explore something new and unknown to me. It is scary to do something outside of your comfort zone, but they tell me that is how you grow.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

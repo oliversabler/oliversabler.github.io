@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on My cyberpage</title>
+    <link>https://oliversabler.com/categories/</link>
+    <description>Recent content in Categories on My cyberpage</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 24 Apr 2025 16:00:00 +0200</lastBuildDate>
+    <atom:link href="https://oliversabler.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dotnet</title>
+      <link>https://oliversabler.com/categories/dotnet/</link>
+      <pubDate>Thu, 24 Apr 2025 16:00:00 +0200</pubDate>
+      <guid>https://oliversabler.com/categories/dotnet/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Neovim</title>
+      <link>https://oliversabler.com/categories/neovim/</link>
+      <pubDate>Thu, 24 Apr 2025 16:00:00 +0200</pubDate>
+      <guid>https://oliversabler.com/categories/neovim/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Milk</title>
+      <link>https://oliversabler.com/categories/milk/</link>
+      <pubDate>Thu, 27 Mar 2025 16:00:00 +0100</pubDate>
+      <guid>https://oliversabler.com/categories/milk/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ev</title>
+      <link>https://oliversabler.com/categories/ev/</link>
+      <pubDate>Thu, 13 Feb 2025 19:00:00 +0100</pubDate>
+      <guid>https://oliversabler.com/categories/ev/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Travel</title>
+      <link>https://oliversabler.com/categories/travel/</link>
+      <pubDate>Thu, 13 Feb 2025 19:00:00 +0100</pubDate>
+      <guid>https://oliversabler.com/categories/travel/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Exploring</title>
+      <link>https://oliversabler.com/categories/exploring/</link>
+      <pubDate>Mon, 03 Feb 2025 20:28:00 +0100</pubDate>
+      <guid>https://oliversabler.com/categories/exploring/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Security</title>
+      <link>https://oliversabler.com/categories/security/</link>
+      <pubDate>Tue, 28 May 2024 20:20:20 +0100</pubDate>
+      <guid>https://oliversabler.com/categories/security/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>
