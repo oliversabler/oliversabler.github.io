@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Plex Media Server on Raspberry Pi 4</title>
+	
+	
+	<link rel="stylesheet" href="/css/style.css">
+	
+	
+</head>
+<body>
+	<header>
+<pre class="log-header">
+:::' ####:::::' ######::' ######:::::
+::::' ##:::::: ##::: ##: ##::: ##::::
+::::: ##:::::: ##::: ##: ##::::::::::
+::::: ##:::::: ##::: ##: ##:: ###::::
+::::. ##:: ##: ##::: ##: ##::. ##::::
+:::: ########:. ######::. ######:::::
+::::........:::......::::......::::::
+</pre>
+	
+	<nav>
+        <span>|</span>
+        <a href="/">[log]</a>
+        
+        
+        <span>|</span>
+        <a href="/about/">[about]</a>
+        
+        <span>|</span>
+        <a href="/resume/">[resume]</a>
+        
+        <span>|</span>
+	</nav>
+	
+</header>
+
+	
+	<main>
+		<article>
+			<h1>Plex Media Server on Raspberry Pi 4</h1>
+            
+            <i>
+                <time>
+                2025-10-16
+                </time>
+            </i>
+            
+
+            <p>
+            
+            </p>
+			<div>
+				<p>This is mainly a guide for myself, but I wanted to put it here so it can help other people as well.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>I&rsquo;m using a Raspberry Pi 4 Model B with 4GB RAM, with Ubuntu Server 24.04.</p>
+<h2 id="ufw">UFW</h2>
+<p>This step is optional. I like limit the access to the server and use UFW to achieve this. I usually block all traffic but SSH from local network. We will revisit this to open up for Plex Media Server at a later stage.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo ufw default deny incoming <span style="color:#ff79c6">&amp;&amp;</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>sudo ufw default allow outgoing <span style="color:#ff79c6">&amp;&amp;</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>sudo ufw allow from 10.0.0.0/24 to any port <span style="color:#bd93f9">22</span> proto tcp <span style="color:#ff79c6">&amp;&amp;</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>sudo ufw <span style="color:#8be9fd;font-style:italic">enable</span> -y <span style="color:#ff79c6">&amp;&amp;</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>sudo ufw status verbose
+</span></span></code></pre></div><h2 id="plex-media-server">Plex Media Server</h2>
+<p>Fetch and install Plex Media Server. This package is targeting ARM64. If you are on another architecture, make sure download and install a package compatible with your machine.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>wget https://downloads.plex.tv/plex-media-server-new/1.42.2.10156-f737b826c/debian/plexmediaserver_1.42.2.10156-f737b826c_arm64.deb
+</span></span><span style="display:flex;"><span>sudo dpkg -i plexmediaserver_1.42.2.10156-f737b826c_arm64.deb
+</span></span></code></pre></div><p>Start Plex and check status.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo systemctl start plexmediaserver <span style="color:#ff79c6">&amp;&amp;</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>sudo systemctl <span style="color:#8be9fd;font-style:italic">enable</span> plexmediaserver <span style="color:#ff79c6">&amp;&amp;</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>systemctl status plexmediaserver
+</span></span></code></pre></div><p>If you have UFW enabled we want to open up port 32400 to access the server via the web.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo ufw allow 32400/tcp
+</span></span><span style="display:flex;"><span>sudo ufw reload
+</span></span></code></pre></div><h2 id="external-hard-drive">External hard drive</h2>
+<p>For some reason my external drive did not want to mount itself automatically to the Raspberry Pi. But it detected that something was connected, we can check this with List Block Devices.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>lsblk
+</span></span></code></pre></div><p>When we know where the external hard drive is connected, we can mount it ourselves.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo mkdir /mnt/extdrive
+</span></span><span style="display:flex;"><span>sudo mount /dev/sda1 /mnt/extdrive
+</span></span></code></pre></div><p>Access Plex Media Server on your browser, login, configure and happy streaming.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>http://&lt;your <span style="color:#8be9fd;font-style:italic">local</span> ip-address&gt;:32400/web
+</span></span></code></pre></div>
+			</div>
+		</article>
+	</main>
+
+	<footer>
+	</p>
+</footer>
+
+</body>
+</html>

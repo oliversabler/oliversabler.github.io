@@ -6,8 +6,29 @@
     <description>Recent content in Tags on My cyberpage</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 24 Apr 2025 16:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 17 Oct 2025 10:00:00 +0200</lastBuildDate>
     <atom:link href="https://oliversabler.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Plex</title>
+      <link>https://oliversabler.com/tags/plex/</link>
+      <pubDate>Fri, 17 Oct 2025 10:00:00 +0200</pubDate>
+      <guid>https://oliversabler.com/tags/plex/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Raspberry Pi</title>
+      <link>https://oliversabler.com/tags/raspberry-pi/</link>
+      <pubDate>Fri, 17 Oct 2025 10:00:00 +0200</pubDate>
+      <guid>https://oliversabler.com/tags/raspberry-pi/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ufw</title>
+      <link>https://oliversabler.com/tags/ufw/</link>
+      <pubDate>Fri, 17 Oct 2025 10:00:00 +0200</pubDate>
+      <guid>https://oliversabler.com/tags/ufw/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Csharp</title>
       <link>https://oliversabler.com/tags/csharp/</link>

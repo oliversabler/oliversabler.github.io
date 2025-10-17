@@ -6,8 +6,15 @@
     <description>Recent content in Categories on My cyberpage</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 24 Apr 2025 16:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 17 Oct 2025 10:00:00 +0200</lastBuildDate>
     <atom:link href="https://oliversabler.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Guide</title>
+      <link>https://oliversabler.com/categories/guide/</link>
+      <pubDate>Fri, 17 Oct 2025 10:00:00 +0200</pubDate>
+      <guid>https://oliversabler.com/categories/guide/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Dotnet</title>
       <link>https://oliversabler.com/categories/dotnet/</link>
