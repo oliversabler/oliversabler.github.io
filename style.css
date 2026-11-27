@@ -1,0 +1,94 @@
+@font-face {
+  font-family: "Perfect DOS VGA 437";
+  src: url("fonts/perfect-dos-vga-437.woff") format("woff");
+  font-display: swap;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #0b0c1c;
+  color: #fefefe;
+  font-family: "Perfect DOS VGA 437", monospace;
+}
+
+a {
+  color: #fefefe;
+}
+
+a:hover {
+  color: #f00a0a;
+}
+
+h1 {
+  margin: 0 0 0.5em;
+}
+
+h1::after {
+  content: "";
+  display: inline-block;
+  width: 1ch;
+  height: 1em;
+  vertical-align: -0.12em;
+  background: currentColor;
+  animation: cursor-blink 1.4s step-end infinite;
+}
+
+@keyframes cursor-blink {
+  50% { opacity: 0; }
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  max-width: 100%;
+  margin-bottom: 1em;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 30em) {
+  nav {
+    flex-direction: column;
+  }
+
+  nav span {
+    display: none;
+  }
+}
+
+.snow {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  color: #fefefe;
+}
+
+.snow span {
+  position: absolute;
+  top: -1em;
+  animation: snowfall linear infinite;
+}
+
+@keyframes snowfall {
+  to {
+    transform: translate(var(--drift), calc(100vh + 2em)) rotate(var(--rotation));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  h1::after {
+    animation: none;
+  }
+
+  .snow {
+    display: none;
+  }
+}
